@@ -1,0 +1,170 @@
+---
+const segments = [
+  'juank.dev',
+  'Terrassa, Barcelona',
+  'football analytics',
+  'robotics',
+  'open source',
+  'build → break → learn → repeat ↺',
+  'shipping at the speed of curiosity',
+];
+---
+
+<footer class="ticker-footer">
+
+  <!-- ── SCROLLING TICKER ──────────────────────────────────── -->
+  <div class="ticker-bar" aria-hidden="true">
+    <div class="ticker-track">
+
+      {/* First copy */}
+      <span class="ticker-content">
+        {segments.map((seg, i) => (
+          <Fragment>
+            {i > 0 && <span class="ticker-dot"> · </span>}
+            {seg}
+          </Fragment>
+        ))}
+        <span class="ticker-dot"> · </span>
+      </span>
+
+      {/* Duplicate — makes the loop seamless */}
+      <span class="ticker-content">
+        {segments.map((seg, i) => (
+          <Fragment>
+            {i > 0 && <span class="ticker-dot"> · </span>}
+            {seg}
+          </Fragment>
+        ))}
+        <span class="ticker-dot"> · </span>
+      </span>
+
+    </div>
+  </div>
+
+  <!-- ── STATUS BAR ─────────────────────────────────────────── -->
+  <div class="status-bar">
+    <span class="status-left">
+      <time id="ticker-clock" datetime="">00:00:00</time>
+      <span class="status-tz"> — GMT+2</span>
+    </span>
+    <a href="mailto:hi@juank.dev" class="status-email">hi@juank.dev</a>
+  </div>
+
+</footer>
+
+<script>
+  function getTime(): string {
+    return new Date().toLocaleTimeString('en-GB', {
+      timeZone: 'Europe/Madrid',
+      hour:     '2-digit',
+      minute:   '2-digit',
+      second:   '2-digit',
+      hour12:   false,
+    });
+  }
+
+  const clock = document.getElementById('ticker-clock');
+  if (clock) {
+    const tick = () => {
+      const t = getTime();
+      clock.textContent = t;
+      clock.setAttribute('datetime', t);
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+</script>
+
+<style>
+  /* ============================================================
+     FOOTER WRAPPER
+     ============================================================ */
+  .ticker-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--color-bg);
+  }
+
+  /* ============================================================
+     SCROLLING TICKER BAR
+     ============================================================ */
+  .ticker-bar {
+    height: 36px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+
+  /*
+   * .ticker-track animation (ticker 30s linear infinite + hover pause)
+   * is defined globally in animations.css — no need to re-declare here.
+   */
+
+  .ticker-content {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    white-space: nowrap;
+    padding-right: 0; /* spacing comes from the trailing dot */
+  }
+
+  .ticker-dot {
+    color: var(--color-accent);
+  }
+
+  /* ============================================================
+     STATUS BAR
+     ============================================================ */
+  .status-bar {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--color-border);
+    padding: 0 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .status-bar {
+      padding: 0 1rem;
+    }
+  }
+
+  .status-left {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+  }
+
+  .status-tz {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+  }
+
+  .status-email {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .status-email:hover {
+    color: var(--color-accent);
+  }
+
+  /* ============================================================
+     REDUCED MOTION — stop ticker scroll
+     ============================================================ */
+  @media (prefers-reduced-motion: reduce) {
+    .status-email {
+      transition: none;
+    }
+  }
+</style>

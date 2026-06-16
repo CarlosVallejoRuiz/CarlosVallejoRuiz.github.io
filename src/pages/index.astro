@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import Ticker from '../components/Ticker.astro';
+---
+
+<Base
+  title="juank — Juan Carlos Vallejo Ruiz"
+  description="Full-Stack Developer & AI Entrepreneur. Building football analytics tools and AI-powered robotics from Terrassa, Barcelona."
+>
+  <main class="site-main">
+    <div class="col-hero">
+      <Hero />
+    </div>
+    <div class="col-works">
+      <ProjectGrid />
+    </div>
+  </main>
+
+  <Ticker />
+</Base>
+
+<style>
+  /* ============================================================
+     PAGE GRID
+     ============================================================ */
+  .site-main {
+    display: grid;
+    grid-template-columns: 40fr 60fr;
+    gap: 0;
+    /* viewport minus fixed header — ticker is fixed so doesn't affect flow */
+    height: calc(100vh - 40px);
+  }
+
+  /* ============================================================
+     LEFT COLUMN — Hero
+     ============================================================ */
+  .col-hero {
+    overflow-y: auto;
+    /* Hero component handles padding: 3rem 2rem 2rem */
+  }
+
+  /* ============================================================
+     RIGHT COLUMN — ProjectGrid
+     ============================================================ */
+  .col-works {
+    border-left: 1px solid var(--color-border);
+    overflow-y: auto;
+    /* ProjectGrid component handles padding: 3rem 2rem 2rem */
+  }
+
+  /* ============================================================
+     MOBILE — single column, stacked
+     ============================================================ */
+  @media (max-width: 768px) {
+    .site-main {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .col-works {
+      border-left: none;
+    }
+  }
+</style>

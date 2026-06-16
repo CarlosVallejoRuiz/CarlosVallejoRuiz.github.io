@@ -1,0 +1,233 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import { projects } from '../data/projects';
+---
+
+<section class="project-grid fade-in">
+
+  <!-- ── HEADING ───────────────────────────────────────────── -->
+  <h2 class="grid-heading">Selected works</h2>
+
+  <!-- ── TABS ──────────────────────────────────────────────── -->
+  <div class="tabs-list" role="tablist" aria-label="Projects">
+    {projects.map((p, i) => (
+      <button
+        class:list={['tab-btn', 'tab-link', { 'is-active': i === 0 }]}
+        role="tab"
+        aria-selected={i === 0 ? 'true' : 'false'}
+        aria-controls={`panel-${p.id}`}
+        data-project={p.id}
+        type="button"
+      >
+        <span class="tab-meta">
+          <span class="tab-number">{p.number}</span>
+          <span class="tab-context">{p.context}</span>
+        </span>
+        <span class="tab-name">{p.name}</span>
+      </button>
+    ))}
+  </div>
+
+  <!-- ── CARD PANELS ───────────────────────────────────────── -->
+  <div class="cards-container">
+    {projects.map((p, i) => (
+      <div
+        class:list={['card-panel', { 'is-active': i === 0 }]}
+        id={`panel-${p.id}`}
+        role="tabpanel"
+        aria-label={p.name}
+        data-project={p.id}
+      >
+        <ProjectCard project={p} />
+      </div>
+    ))}
+  </div>
+
+</section>
+
+<script>
+  const tabs   = [...document.querySelectorAll<HTMLButtonElement>('.tab-btn')];
+  const panels = [...document.querySelectorAll<HTMLElement>('.card-panel')];
+
+  function switchTo(id: string) {
+    tabs.forEach((t) => {
+      const active = t.dataset.project === id;
+      t.classList.toggle('is-active', active);
+      t.setAttribute('aria-selected', String(active));
+    });
+
+    panels.forEach((p) => {
+      if (p.dataset.project === id) {
+        p.classList.add('is-active');
+        p.getBoundingClientRect(); // force reflow so transition fires
+        p.style.opacity = '1';
+      } else if (p.classList.contains('is-active')) {
+        p.style.opacity = '0';
+        setTimeout(() => p.classList.remove('is-active'), 200);
+      }
+    });
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      if (tab.dataset.project) switchTo(tab.dataset.project);
+    });
+  });
+
+  // Reveal first panel (display: block already from SSR class, trigger opacity)
+  const firstPanel = panels[0];
+  if (firstPanel) {
+    firstPanel.getBoundingClientRect();
+    firstPanel.style.opacity = '1';
+  }
+</script>
+
+<style>
+  /* ============================================================
+     SECTION WRAPPER
+     ============================================================ */
+  .project-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding: var(--space-12) var(--space-8) var(--space-8);
+  }
+
+  /* ============================================================
+     HEADING
+     ============================================================ */
+  .grid-heading {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 400;
+    color: var(--color-ink);
+  }
+
+  /* ============================================================
+     TABS
+     ============================================================ */
+  .tabs-list {
+    display: flex;
+  }
+
+  .tab-btn {
+    position: relative; /* required for .tab-link ::after */
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    border: 1px solid var(--color-border);
+    padding: 0.75rem 1rem;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    flex: 1;
+    min-width: 0;
+    transition: border-color 0.15s ease;
+  }
+
+  /* merge adjacent borders */
+  .tab-btn + .tab-btn {
+    border-left: none;
+  }
+
+  /* restore left border on active so all 4 sides show */
+  .tab-btn.is-active {
+    border: 1px solid var(--color-ink);
+    z-index: 1;
+  }
+
+  .tab-btn.is-active + .tab-btn {
+    border-left: none;
+  }
+
+  .tab-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .tab-number,
+  .tab-context {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    white-space: nowrap;
+  }
+
+  .tab-name {
+    font-family: var(--font-ui);
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--color-muted);
+    transition: color 0.15s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .tab-btn.is-active .tab-name {
+    color: var(--color-ink);
+  }
+
+  /* ============================================================
+     CARD PANELS
+     ============================================================ */
+  .card-panel {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .card-panel.is-active {
+    display: block;
+  }
+
+  /*
+   * Neutralize inner .fade-in: the IntersectionObserver in Base.astro
+   * can't observe elements inside display:none panels, so we let the
+   * .card-panel wrapper own the opacity transition instead.
+   */
+  .card-panel :global(.fade-in) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* ============================================================
+     MOBILE — tabs scroll horizontally at 375px
+     ============================================================ */
+  @media (max-width: 640px) {
+    .tabs-list {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .tabs-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      /* prevent tabs from shrinking below readable size */
+      flex-shrink: 0;
+      min-width: 90px;
+      padding: 0.6rem 0.75rem;
+    }
+
+    .tab-name {
+      font-size: var(--text-sm);
+    }
+  }
+
+  /* ============================================================
+     REDUCED MOTION
+     ============================================================ */
+  @media (prefers-reduced-motion: reduce) {
+    .tab-btn,
+    .tab-name,
+    .card-panel {
+      transition: none;
+    }
+  }
+</style>

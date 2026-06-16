@@ -1,0 +1,305 @@
+---
+import type { Project, ProjectStatus } from '../data/projects';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+const statusLabel: Record<ProjectStatus, string> = {
+  live:          "LIVE",
+  beta:          "BETA",
+  wip:           "WIP",
+  "open-source": "OPEN SOURCE",
+};
+---
+
+<article class="project-card fade-in">
+
+  <!-- ── HEADER: number + name + context ──────────────────── -->
+  <header class="card-header">
+    <span class="card-number" aria-hidden="true">{project.number}</span>
+    <div class="card-title-group">
+      <h2 class="card-name">{project.name}</h2>
+      <span class="card-context">{project.context}</span>
+    </div>
+  </header>
+
+  <!-- ── CATEGORY ─────────────────────────────────────────── -->
+  <p class="card-category">{project.category}</p>
+
+  <!-- ── PREVIEW ──────────────────────────────────────────── -->
+  <div class="card-preview">
+    <div class="card-preview-placeholder" aria-hidden="true">
+      <span>{project.name}</span>
+    </div>
+    <img
+      src={project.previewImage}
+      alt={`${project.name} preview`}
+      class="card-preview-img"
+      loading="lazy"
+    />
+    <span class="card-preview-hint" aria-hidden="true">Hover to preview</span>
+  </div>
+
+  <!-- ── ROLE + DESCRIPTION ───────────────────────────────── -->
+  <p class="card-role">{project.role}</p>
+  <p class="card-description">{project.description}</p>
+
+  <!-- ── FOOTER: tags + status + links ───────────────────── -->
+  <footer class="card-footer">
+    <ul class="card-stack" role="list" aria-label="Tech stack">
+      {project.stack.map((tech) => (
+        <li class="stack-tag">{tech}</li>
+      ))}
+    </ul>
+
+    <div class="card-actions">
+      <span class="card-status">{statusLabel[project.status]}</span>
+
+      {project.github && (
+        <a
+          href={project.github}
+          class="link-github"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GITHUB ↗
+        </a>
+      )}
+
+      {project.url && (
+        <a
+          href={project.url}
+          class="btn-open"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          OPEN ↗
+        </a>
+      )}
+    </div>
+  </footer>
+
+</article>
+
+<style>
+  /* ============================================================
+     CARD WRAPPER
+     ============================================================ */
+  .project-card {
+    border: 1px solid var(--color-border);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* ============================================================
+     HEADER — number (vertical) + name + context
+     ============================================================ */
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .card-number {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    align-self: center;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+
+  .card-title-group {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .card-name {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-ink);
+  }
+
+  .card-context {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  /* ============================================================
+     CATEGORY
+     ============================================================ */
+  .card-category {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+  }
+
+  /* ============================================================
+     PREVIEW
+     ============================================================ */
+  .card-preview {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .card-preview-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .card-preview-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+
+  .card-preview:hover .card-preview-img {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+
+  .card-preview-hint {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    background: var(--color-bg);
+    padding: 2px 6px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .card-preview:hover .card-preview-hint {
+    opacity: 1;
+  }
+
+  /* ============================================================
+     ROLE + DESCRIPTION
+     ============================================================ */
+  .card-role {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+
+  .card-description {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    color: var(--color-muted);
+    line-height: 1.6;
+  }
+
+  /* ============================================================
+     FOOTER — stack tags + status + links
+     ============================================================ */
+  .card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: auto;
+  }
+
+  .card-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .stack-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    padding: 2px 8px;
+  }
+
+  .card-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .card-status {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-accent);
+    letter-spacing: 0.06em;
+    margin-right: auto;
+  }
+
+  .link-github {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .link-github:hover {
+    color: var(--color-accent);
+  }
+
+  .btn-open {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    padding: 4px 12px;
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .btn-open:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  /* ============================================================
+     REDUCED MOTION
+     ============================================================ */
+  @media (prefers-reduced-motion: reduce) {
+    .card-preview-img,
+    .card-preview-hint,
+    .link-github,
+    .btn-open {
+      transition: none;
+    }
+  }
+</style>

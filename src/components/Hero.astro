@@ -1,0 +1,130 @@
+---
+// No props — content is hardcoded per CLAUDE.md spec
+---
+
+<section class="hero fade-in">
+  <h1 class="hero-name" aria-label="juank">
+    <span class="name-juank typing-cursor" aria-hidden="true">juank</span>
+    <span class="name-ca" aria-hidden="true">ca</span>
+  </h1>
+
+  <hr class="hero-divider" />
+
+  <p class="hero-label">
+    Juan Carlos Vallejo Ruiz / Full-Stack Dev &amp; AI Entrepreneur
+  </p>
+
+  <div class="hero-bio">
+    <p>
+      Shipping football intelligence and robot programs since 2023,
+      mostly with Python, TypeScript, and Claude.
+    </p>
+    <p>
+      If you have something worth building, let's talk:
+      <a href="mailto:juank@juank.dev" class="hero-email">juank@juank.dev</a>
+    </p>
+  </div>
+
+  <div class="hero-meta">
+    <p><span aria-hidden="true">📍</span> Terrassa, Barcelona</p>
+    <p>→ Master's in Big Data &amp; AI in Sport · UNISPORT</p>
+  </div>
+</section>
+
+<style>
+  /* ============================================================
+     HERO WRAPPER
+     ============================================================ */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-12) var(--space-8) var(--space-8);
+  }
+
+  /* ============================================================
+     NAME — h1
+     ============================================================ */
+  .hero-name {
+    font-family: var(--font-display);
+    line-height: 0.88;
+    margin-bottom: 0;
+  }
+
+  .name-juank {
+    display: block;
+    font-size: var(--text-hero);
+    font-weight: 900;
+    font-style: normal;
+    color: var(--color-ink);
+  }
+
+  .name-ca {
+    display: block;
+    font-size: var(--text-hero);
+    font-weight: 900;
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--color-border);
+  }
+
+  /* ============================================================
+     DIVIDER
+     ============================================================ */
+  .hero-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    width: 60%;
+    margin: var(--space-6) 0;
+  }
+
+  /* ============================================================
+     LABEL
+     ============================================================ */
+  .hero-label {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-6);
+  }
+
+  /* ============================================================
+     BIO
+     ============================================================ */
+  .hero-bio {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  .hero-email {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .hero-email:hover {
+    text-decoration: underline;
+  }
+
+  /* ============================================================
+     SECONDARY DATA
+     ============================================================ */
+  .hero-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .hero-meta p {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+</style>

@@ -1,0 +1,98 @@
+/* ============================================================
+   1. TYPING CURSOR — hero name
+   ============================================================ */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.typing-cursor::after {
+  content: '|';
+  display: inline;
+  margin-left: 0.05em;
+  color: var(--color-ink);
+  animation: blink 0.7s steps(1, end) infinite;
+}
+
+/* ============================================================
+   2. TICKER / MARQUEE
+   ============================================================ */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 30s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   3. FADE-IN — secciones con IntersectionObserver
+   ============================================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   4. HOVER UNDERLINE SLIDE — tabs de proyectos
+   ============================================================ */
+.tab-link {
+  position: relative;
+}
+
+.tab-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width 0.2s ease;
+}
+
+.tab-link:hover::after,
+.tab-link[aria-selected='true']::after {
+  width: 100%;
+}
+
+/* ============================================================
+   REDUCED MOTION OVERRIDES
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  /* Show cursor as static character, no blink */
+  .typing-cursor::after {
+    animation: none;
+    opacity: 1;
+  }
+
+  /* Stop ticker */
+  .ticker-track {
+    animation: none;
+  }
+
+  /* Reveal sections immediately, skip transition */
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* Remove underline slide transition */
+  .tab-link::after {
+    transition: none;
+  }
+}
