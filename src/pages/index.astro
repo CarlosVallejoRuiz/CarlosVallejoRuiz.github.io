@@ -38,7 +38,7 @@ import Ticker from '../components/Ticker.astro';
      ============================================================ */
   .col-hero {
     overflow-y: auto;
-    /* Hero component handles padding: 3rem 2rem 2rem */
+    padding-bottom: 80px; /* clear fixed ticker (44px bar + 28px status + buffer) */
   }
 
   /* ============================================================
@@ -47,7 +47,7 @@ import Ticker from '../components/Ticker.astro';
   .col-works {
     border-left: 1px solid var(--color-border);
     overflow-y: auto;
-    /* ProjectGrid component handles padding: 3rem 2rem 2rem */
+    padding-bottom: 80px; /* same fixed ticker clearance */
   }
 
   /* ============================================================
@@ -61,6 +61,11 @@ import Ticker from '../components/Ticker.astro';
 
     .col-works {
       border-left: none;
+    }
+
+    .col-hero,
+    .col-works {
+      padding-bottom: 80px;
     }
   }
 </style>
