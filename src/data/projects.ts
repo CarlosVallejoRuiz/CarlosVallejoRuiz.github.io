@@ -26,7 +26,7 @@ export const projects: Project[] = [
     description:
       "Analytics platform for football clubs. GPS/EPTS hardware integration, tactical board with AI suggestions, video analysis with YOLOv8 + BoT-SORT. Built to land a role at a professional club.",
     stack: ["Next.js", "Supabase", "Python", "Modal.com", "YOLOv8", "Claude API"],
-    previewImage: "/images/prisma-preview.webp",
+    previewImage: "/images/prisma-preview.jpeg",
     status: "beta",
   },
   {
@@ -39,7 +39,7 @@ export const projects: Project[] = [
     description:
       "Desktop Python app integrating RoboDK with Claude API to automate MIG/MAG robotic welding programs. Reduces manual programming time from hours to minutes.",
     stack: ["Python", "RoboDK SDK", "Claude API", "Tauri"],
-    previewImage: "/images/arc-preview.webp",
+    previewImage: "/images/arc-preview.png",
     status: "wip",
   },
   {
@@ -53,7 +53,7 @@ export const projects: Project[] = [
       "Tamagotchi-style rubber duck debugger for your desktop. Local AI via LM Studio, mood system, cruelty slider, 11 arcade mini-games. Because debugging alone is sad.",
     stack: ["Tauri v2", "React", "TypeScript", "Rust", "LM Studio"],
     github: "https://github.com/juankm/debugduck",
-    previewImage: "/images/duck-preview.webp",
+    previewImage: "/images/duck-preview.gif",
     status: "open-source",
   },
   {
@@ -67,7 +67,7 @@ export const projects: Project[] = [
       "CLI tool that reads codebase graphs and selects optimal subgraphs for LLM queries using PageRank + TF-IDF. Zero LLM calls. Ships an MCP server and HTML visualizer.",
     stack: ["Python", "PageRank", "TF-IDF", "MCP"],
     github: "https://github.com/juankm/slurp",
-    previewImage: "/images/slurp-preview.webp",
+    previewImage: "/images/slurp-preview.gif",
     status: "open-source",
   },
 ];

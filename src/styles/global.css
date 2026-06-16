@@ -88,6 +88,19 @@ h6 {
 }
 
 /* ============================================================
+   DARK MODE — palette override
+   Class is set synchronously in <head> to avoid FOUC.
+   ============================================================ */
+html.dark {
+  --color-bg:      #1A1A18;
+  --color-ink:     #E8E4DC;
+  --color-accent:  #5B9BD5;
+  --color-muted:   #6B6B63;
+  --color-border:  #2E2E2B;
+  --color-surface: #222220;
+}
+
+/* ============================================================
    BASE STYLES
    ============================================================ */
 html,

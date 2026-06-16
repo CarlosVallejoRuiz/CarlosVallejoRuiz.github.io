@@ -1,0 +1,94 @@
+---
+// No props — reads html.dark class set by the inline head script
+---
+
+<button
+  id="theme-toggle"
+  class="theme-toggle"
+  type="button"
+  aria-pressed="false"
+  aria-label="Toggle dark mode"
+  data-active="false"
+>
+  <span class="t-label">DARK</span>
+  <span class="t-sep" aria-hidden="true"> · </span>
+  <span class="t-off" aria-hidden="true">OFF</span>
+  <span class="t-on"  aria-hidden="true">ON</span>
+</button>
+
+<script>
+  const btn  = document.getElementById('theme-toggle') as HTMLButtonElement;
+  const html = document.documentElement;
+
+  function sync(): void {
+    const isDark = html.classList.contains('dark');
+    btn.dataset.active = String(isDark);
+    btn.setAttribute('aria-pressed', String(isDark));
+
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (meta) meta.content = isDark ? '#1A1A18' : '#E8E4DC';
+  }
+
+  btn.addEventListener('click', () => {
+    const isDark = html.classList.toggle('dark');
+    try { localStorage.setItem('juank-theme', isDark ? 'dark' : 'light'); } catch (_) {}
+    sync();
+  });
+
+  // Align button state with class already set by the head script
+  sync();
+</script>
+
+<style>
+  /* ============================================================
+     TOGGLE BUTTON
+     ============================================================ */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    color: var(--color-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.15s ease;
+  }
+
+  .theme-toggle:hover {
+    color: var(--color-ink);
+  }
+
+  .theme-toggle[data-active='true'] {
+    color: var(--color-ink);
+  }
+
+  /* ── OFF/ON text swap via data-active ─────────────────────── */
+  .t-off { display: inline; }
+  .t-on  { display: none; }
+
+  .theme-toggle[data-active='true'] .t-off { display: none; }
+  .theme-toggle[data-active='true'] .t-on  { display: inline; }
+
+  /* ── Dot separator color ──────────────────────────────────── */
+  .t-sep {
+    color: var(--color-border);
+    user-select: none;
+  }
+
+  /* ── Focus visible ────────────────────────────────────────── */
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ── Reduced motion ───────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle {
+      transition: none;
+    }
+  }
+</style>
