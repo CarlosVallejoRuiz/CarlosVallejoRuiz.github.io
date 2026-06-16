@@ -58,26 +58,29 @@ const statusLabel: Record<ProjectStatus, string> = {
     <div class="card-actions">
       <span class="card-status">{statusLabel[project.status]}</span>
 
-      {project.github && (
-        <a
-          href={project.github}
-          class="link-github"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GITHUB ↗
-        </a>
-      )}
-
-      {project.url && (
-        <a
-          href={project.url}
-          class="btn-open"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          OPEN ↗
-        </a>
+      {(project.github || project.url) && (
+        <div class="card-links">
+          {project.github && (
+            <a
+              href={project.github}
+              class="link-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GITHUB ↗
+            </a>
+          )}
+          {project.url && (
+            <a
+              href={project.url}
+              class="link-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LANDING ↗
+            </a>
+          )}
+        </div>
       )}
     </div>
   </footer>
@@ -262,33 +265,26 @@ const statusLabel: Record<ProjectStatus, string> = {
     margin-right: auto;
   }
 
-  .link-github {
+  .card-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .link-btn {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-muted);
-    letter-spacing: 0.04em;
+    border: 1px solid var(--color-border);
+    padding: 4px 10px;
     text-decoration: none;
-    transition: color 0.15s ease;
+    letter-spacing: 0.05em;
+    transition: color 0.15s ease, border-color 0.15s ease;
   }
 
-  .link-github:hover {
-    color: var(--color-accent);
-  }
-
-  .btn-open {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--color-accent);
-    border: 1px solid var(--color-accent);
-    padding: 4px 12px;
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    transition: background 0.15s ease, color 0.15s ease;
-  }
-
-  .btn-open:hover {
-    background: var(--color-accent);
-    color: #fff;
+  .link-btn:hover {
+    color: var(--color-ink);
+    border-color: var(--color-ink);
   }
 
   /* ============================================================
@@ -297,8 +293,7 @@ const statusLabel: Record<ProjectStatus, string> = {
   @media (prefers-reduced-motion: reduce) {
     .card-preview-img,
     .card-preview-hint,
-    .link-github,
-    .btn-open {
+    .link-btn {
       transition: none;
     }
   }

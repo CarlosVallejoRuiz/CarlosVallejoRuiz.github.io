@@ -20,12 +20,13 @@ const ogImage      = `${canonicalURL}/images/og-image.webp`;
 <html lang="en">
   <head>
     <!-- Inline theme script — must run before CSS to avoid FOUC -->
+    <!-- Default is always light; dark only if explicitly saved by user -->
     <script is:inline>
       (function () {
         try {
-          var s = localStorage.getItem('juank-theme');
-          var dark = s === 'dark' || (!s && matchMedia('(prefers-color-scheme: dark)').matches);
-          if (dark) document.documentElement.classList.add('dark');
+          if (localStorage.getItem('juank-theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
         } catch (_) {}
       })();
     </script>

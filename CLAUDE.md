@@ -223,3 +223,4 @@ theme-color: #E8E4DC
 - Las imágenes de preview son placeholder hasta que el usuario las sustituya — usa divs con `background: var(--color-surface)` y un label centrado con el nombre del proyecto
 - El ticker text completo: `juank.dev · Terrassa, Barcelona · football analytics · robotics · open source · build → break → learn → repeat ↺ · shipping at the speed of curiosity ·`
 - El build number en header: `v01.2026` hardcodeado por ahora
+- **Tema oscuro persistido en dev:** si el navegador carga en dark mode inesperadamente, ejecutar en la consola del navegador: `localStorage.removeItem('juank-theme')` y recargar. El default es siempre light; dark solo se activa si el usuario lo seleccionó explícitamente.

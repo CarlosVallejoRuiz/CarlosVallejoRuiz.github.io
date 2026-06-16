@@ -26,6 +26,7 @@ export const projects: Project[] = [
     description:
       "Analytics platform for football clubs. GPS/EPTS hardware integration, tactical board with AI suggestions, video analysis with YOLOv8 + BoT-SORT. Built to land a role at a professional club.",
     stack: ["Next.js", "Supabase", "Python", "Modal.com", "YOLOv8", "Claude API"],
+    url: "https://www.prismastats.es/",
     previewImage: "/images/prisma-preview.jpeg",
     status: "beta",
   },
@@ -52,7 +53,8 @@ export const projects: Project[] = [
     description:
       "Tamagotchi-style rubber duck debugger for your desktop. Local AI via LM Studio, mood system, cruelty slider, 11 arcade mini-games. Because debugging alone is sad.",
     stack: ["Tauri v2", "React", "TypeScript", "Rust", "LM Studio"],
-    github: "https://github.com/juankm/debugduck",
+    url: "https://CarlosVallejoRuiz.github.io/debugduck",
+    github: "https://github.com/CarlosVallejoRuiz/debugduck",
     previewImage: "/images/duck-preview.gif",
     status: "open-source",
   },
@@ -66,7 +68,8 @@ export const projects: Project[] = [
     description:
       "CLI tool that reads codebase graphs and selects optimal subgraphs for LLM queries using PageRank + TF-IDF. Zero LLM calls. Ships an MCP server and HTML visualizer.",
     stack: ["Python", "PageRank", "TF-IDF", "MCP"],
-    github: "https://github.com/juankm/slurp",
+    url: "https://CarlosVallejoRuiz.github.io/slurp",
+    github: "https://github.com/CarlosVallejoRuiz/slurp",
     previewImage: "/images/slurp-preview.gif",
     status: "open-source",
   },
