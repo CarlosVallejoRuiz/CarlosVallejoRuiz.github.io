@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#E8E4DC"/>
+
+  <!-- Outer border -->
+  <rect x="20" y="20" width="1160" height="590" fill="none" stroke="#C4C0B8" stroke-width="1"/>
+
+  <!-- Vertical divider -->
+  <line x1="600" y1="20" x2="600" y2="610" stroke="#C4C0B8" stroke-width="1"/>
+
+  <!-- LEFT: name -->
+  <text x="60" y="285" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="700" fill="#1A1A18">juank</text>
+
+  <!-- LEFT: full name -->
+  <text x="60" y="330" font-family="'Courier New', Courier, monospace" font-size="24" fill="#8B8B83">Juan Carlos Vallejo Ruiz</text>
+
+  <!-- LEFT: role -->
+  <text x="60" y="362" font-family="'Courier New', Courier, monospace" font-size="20" fill="#8B8B83">Full-Stack Dev &amp; AI Builder</text>
+
+  <!-- RIGHT: domain — centered in right half -->
+  <text x="900" y="322" font-family="'Courier New', Courier, monospace" font-size="16" fill="#8B8B83" text-anchor="middle">carlosvallejoruiz.github.io</text>
+
+  <!-- Version label — top right inside border -->
+  <text x="1160" y="48" font-family="'Courier New', Courier, monospace" font-size="14" fill="#C4C0B8" text-anchor="end">v01.2026</text>
+</svg>

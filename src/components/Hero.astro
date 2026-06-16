@@ -45,6 +45,21 @@
       LinkedIn
     </a>
   </div>
+
+  <details class="about-block">
+    <summary>About</summary>
+    <div class="about-content">
+      <p>Started as a full-stack developer at NTT DATA and BedLoop,
+      where I learned to ship production software fast and under pressure.</p>
+      <p>Somewhere along the way I got obsessed with AI — not the hype,
+      but the practical side: tools that actually work, automations that
+      save real hours, products built by one person that feel like a team made them.</p>
+      <p>Now I build my own things: PrismaStats, ArcIntelligence, DebugDuck, slurp.
+      Each one solving a problem I had, or a problem worth having.</p>
+      <p>Currently pursuing a Master's in Big Data &amp; AI in Sport at UNISPORT,
+      based in Terrassa, Barcelona.</p>
+    </div>
+  </details>
 </section>
 
 <style>
@@ -160,5 +175,61 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
+  }
+
+  /* ============================================================
+     ABOUT BLOCK
+     ============================================================ */
+  .about-block {
+    margin-top: 2rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+  }
+
+  .about-block summary {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+  }
+
+  .about-block summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .about-block summary::before {
+    content: "+";
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    line-height: 1;
+    color: var(--color-accent);
+  }
+
+  .about-block[open] summary::before {
+    content: "−";
+  }
+
+  .about-content {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    line-height: 1.8;
+    margin-top: 1rem;
+  }
+
+  .about-content p {
+    margin-bottom: 1rem;
+  }
+
+  .about-content p:last-child {
+    margin-bottom: 0;
   }
 </style>
