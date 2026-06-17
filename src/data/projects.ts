@@ -26,8 +26,8 @@ export const projects: Project[] = [
       es: "Herramientas de Desarrollo IA",
     },
     role: {
-      en: "Solo Build · 2025",
-      es: "Proyecto Personal · 2025",
+      en: "Solo Build · 2026",
+      es: "Proyecto Personal · 2026",
     },
     description: {
       en: "CLI tool that reads codebase graphs and selects optimal subgraphs for LLM queries using PageRank + TF-IDF. Zero LLM calls. Ships an MCP server and HTML visualizer.",
@@ -49,8 +49,8 @@ export const projects: Project[] = [
       es: "Herramientas para Desarrolladores",
     },
     role: {
-      en: "Solo Build · 2024",
-      es: "Proyecto Personal · 2024",
+      en: "Solo Build · 2026",
+      es: "Proyecto Personal · 2026",
     },
     description: {
       en: "Tamagotchi-style rubber duck debugger for your desktop. Local AI via LM Studio, mood system, cruelty slider, 11 arcade mini-games. Because debugging alone is sad.",
@@ -72,8 +72,8 @@ export const projects: Project[] = [
       es: "SaaS de Análisis de Fútbol",
     },
     role: {
-      en: "Founder & Solo Dev · 2023 - present",
-      es: "Fundador & Desarrollador Solo · 2023 - presente",
+      en: "Founder & Solo Dev · 2026",
+      es: "Fundador & Desarrollador Solo · 2026",
     },
     description: {
       en: "Analytics platform for football clubs. GPS/EPTS hardware integration, tactical board with AI suggestions, video analysis with YOLOv8 + BoT-SORT. Built to land a role at a professional club.",
@@ -94,8 +94,8 @@ export const projects: Project[] = [
       es: "Robótica Industrial",
     },
     role: {
-      en: "Solo Build · 2025 - present",
-      es: "Proyecto Personal · 2025 - presente",
+      en: "Solo Build · 2026",
+      es: "Proyecto Personal · 2026",
     },
     description: {
       en: "Desktop Python app integrating RoboDK with Claude API to automate MIG/MAG robotic welding programs. Reduces manual programming time from hours to minutes.",
