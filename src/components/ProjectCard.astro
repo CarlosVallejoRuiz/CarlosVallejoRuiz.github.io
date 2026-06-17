@@ -7,11 +7,18 @@ interface Props {
 
 const { project } = Astro.props;
 
-const statusLabel: Record<ProjectStatus, string> = {
+const statusEN: Record<ProjectStatus, string> = {
   live:          "LIVE",
   beta:          "BETA",
   wip:           "WIP",
   "open-source": "OPEN SOURCE",
+};
+
+const statusES: Record<ProjectStatus, string> = {
+  live:          "EN VIVO",
+  beta:          "BETA",
+  wip:           "EN DESARROLLO",
+  "open-source": "CÓDIGO ABIERTO",
 };
 ---
 
@@ -27,7 +34,10 @@ const statusLabel: Record<ProjectStatus, string> = {
   </header>
 
   <!-- ── CATEGORY ─────────────────────────────────────────── -->
-  <p class="card-category">{project.category}</p>
+  <p class="card-category"
+    data-i18n-en={project.category.en}
+    data-i18n-es={project.category.es}
+  >{project.category.en}</p>
 
   <!-- ── PREVIEW ──────────────────────────────────────────── -->
   <div class="card-preview">
@@ -40,12 +50,19 @@ const statusLabel: Record<ProjectStatus, string> = {
       class="card-preview-img"
       loading="lazy"
     />
-    <span class="card-preview-hint" aria-hidden="true">Hover to preview</span>
+    <span class="card-preview-hint" aria-hidden="true" data-i18n="hoverPreview">Hover to preview</span>
   </div>
 
   <!-- ── ROLE + DESCRIPTION ───────────────────────────────── -->
-  <p class="card-role">{project.role}</p>
-  <p class="card-description">{project.description}</p>
+  <p class="card-role"
+    data-i18n-en={project.role.en}
+    data-i18n-es={project.role.es}
+  >{project.role.en}</p>
+
+  <p class="card-description"
+    data-i18n-en={project.description.en}
+    data-i18n-es={project.description.es}
+  >{project.description.en}</p>
 
   <!-- ── FOOTER: tags + status + links ───────────────────── -->
   <footer class="card-footer">
@@ -56,7 +73,10 @@ const statusLabel: Record<ProjectStatus, string> = {
     </ul>
 
     <div class="card-actions">
-      <span class="card-status">{statusLabel[project.status]}</span>
+      <span class="card-status"
+        data-i18n-en={statusEN[project.status]}
+        data-i18n-es={statusES[project.status]}
+      >{statusEN[project.status]}</span>
 
       {(project.github || project.url) && (
         <div class="card-links">

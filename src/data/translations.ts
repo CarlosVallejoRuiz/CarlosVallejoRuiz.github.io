@@ -1,0 +1,56 @@
+export type Lang = 'en' | 'es';
+
+export const translations = {
+  en: {
+    label:        "JUAN CARLOS VALLEJO RUIZ / FULL-STACK DEV & AI BUILDER",
+    bioLine1:     "I build things with AI — tools that solve real problems, automate the tedious, and make developers' lives a little less painful.",
+    bioLine2:     "Passionate about turning ideas into products, fast. If you have something worth building, let's talk:",
+    location:     "Terrassa, Barcelona",
+    education:    "→ Master's in Big Data & AI in Sport · UNISPORT · 2026",
+    aboutLabel:   "About",
+    aboutText: [
+      "Started in 2019 at NTT DATA, building evolutivos for La Caixa and Generalitat de Catalunya with Java, Spring Boot, and Docker. Moved to Profile in 2022 maintaining insurance management tools in Java, then joined Fervimax Group in 2023 as Full-Stack Developer — migrating a medical tool to a new stack while keeping the live version running.",
+      "Somewhere along the way I got obsessed with AI — not the hype, but the practical side: tools that actually work, automations that save real hours, products built by one person that feel like a team made them.",
+      "Now I build my own things: PrismaStats, ArcIntelligence, DebugDuck, slurp. Each one solving a problem I had, or a problem worth having.",
+      "Master's in Big Data & AI in Sport at UNISPORT — completed March 2026.",
+    ],
+    selectedWorks: "Selected works",
+    hoverPreview:  "Hover to preview",
+    tickerSegments: [
+      "juank.dev",
+      "Terrassa, Barcelona",
+      "AI builder",
+      "open source",
+      "developer tools",
+      "robotics",
+      "build → break → learn → repeat ↺",
+      "shipping at the speed of curiosity",
+    ],
+  },
+  es: {
+    label:        "JUAN CARLOS VALLEJO RUIZ / DESARROLLADOR FULL-STACK & AI BUILDER",
+    bioLine1:     "Construyo cosas con IA — herramientas que resuelven problemas reales, automatizan lo tedioso y hacen la vida de los desarrolladores un poco menos dolorosa.",
+    bioLine2:     "Apasionado por convertir ideas en productos, rápido. Si tienes algo que merezca la pena construir, hablemos:",
+    location:     "Terrassa, Barcelona",
+    education:    "→ Máster en Big Data e IA en el Deporte · UNISPORT · 2026",
+    aboutLabel:   "Sobre mí",
+    aboutText: [
+      "Empecé en 2019 en NTT DATA, desarrollando evolutivos para La Caixa y la Generalitat de Catalunya con Java, Spring Boot y Docker. Pasé a Profile en 2022 manteniendo herramientas de gestión de seguros en Java, y en 2023 entré en Fervimax Group como Full-Stack Developer — migrando una herramienta médica a una nueva versión mientras mantenía la versión en producción.",
+      "En algún momento me obsesioné con la IA — no el hype, sino el lado práctico: herramientas que realmente funcionan, automatizaciones que ahorran horas reales, productos construidos por una sola persona que parecen hechos por un equipo.",
+      "Ahora construyo mis propias cosas: PrismaStats, ArcIntelligence, DebugDuck, slurp. Cada una resolviendo un problema que tuve, o un problema que merecía la pena tener.",
+      "Máster en Big Data e IA en el Deporte en UNISPORT — completado en marzo de 2026.",
+    ],
+    selectedWorks: "Proyectos seleccionados",
+    hoverPreview:  "Pasa el ratón para ver",
+    tickerSegments: [
+      "juank.dev",
+      "Terrassa, Barcelona",
+      "AI builder",
+      "código abierto",
+      "herramientas de desarrollo",
+      "robótica",
+      "construir → romper → aprender → repetir ↺",
+      "enviando a la velocidad de la curiosidad",
+    ],
+  },
+} as const;

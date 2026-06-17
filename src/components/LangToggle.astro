@@ -1,0 +1,77 @@
+---
+// No props — state driven by localStorage
+---
+
+<button
+  id="lang-toggle"
+  class="lang-toggle"
+  aria-label="Switch language / Cambiar idioma"
+  data-active="false"
+>
+  <span class="l-en">EN</span>
+  <span class="l-sep" aria-hidden="true">·</span>
+  <span class="l-es">ES</span>
+</button>
+
+<script>
+  const btn = document.getElementById('lang-toggle') as HTMLButtonElement;
+
+  function syncUI(lang: string) {
+    btn.dataset.active = lang === 'es' ? 'true' : 'false';
+    document.documentElement.lang = lang;
+  }
+
+  function changeLang(lang: string) {
+    syncUI(lang);
+    try { localStorage.setItem('juank-lang', lang); } catch (_) {}
+    document.dispatchEvent(new CustomEvent('langchange', { detail: { lang } }));
+  }
+
+  // Init: set button UI only — Base.astro handles the actual text swap
+  const saved = (() => {
+    try { return localStorage.getItem('juank-lang') ?? 'es'; } catch (_) { return 'es'; }
+  })();
+  syncUI(saved);
+
+  btn.addEventListener('click', () => {
+    changeLang(btn.dataset.active === 'true' ? 'en' : 'es');
+  });
+</script>
+
+<style>
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    padding: 0;
+    line-height: 1;
+  }
+
+  .l-sep {
+    color: var(--color-border);
+    user-select: none;
+  }
+
+  /* EN active (default) */
+  .lang-toggle[data-active="false"] .l-en {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+  .lang-toggle[data-active="false"] .l-es {
+    color: var(--color-muted);
+  }
+
+  /* ES active */
+  .lang-toggle[data-active="true"] .l-es {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+  .lang-toggle[data-active="true"] .l-en {
+    color: var(--color-muted);
+  }
+</style>

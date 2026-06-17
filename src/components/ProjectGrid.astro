@@ -6,9 +6,10 @@ import { projects } from '../data/projects';
 <section class="project-grid fade-in">
 
   <!-- ── HEADING ───────────────────────────────────────────── -->
-  <h2 class="grid-heading">Selected works</h2>
+  <h2 class="grid-heading" data-i18n="selectedWorks">Selected works</h2>
 
   <!-- ── TABS ──────────────────────────────────────────────── -->
+  <div class="tabs-wrapper">
   <div class="tabs-list" role="tablist" aria-label="Projects">
     {projects.map((p, i) => (
       <button
@@ -26,6 +27,7 @@ import { projects } from '../data/projects';
         <span class="tab-name">{p.name}</span>
       </button>
     ))}
+  </div>
   </div>
 
   <!-- ── CARD PANELS ───────────────────────────────────────── -->
@@ -195,11 +197,30 @@ import { projects } from '../data/projects';
   }
 
   /* ============================================================
-     MOBILE — tabs scroll horizontally at 375px
+     MOBILE — horizontally scrollable tabs
      ============================================================ */
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
+    /* wrapper: relative so ::after gradient can be positioned inside it */
+    .tabs-wrapper {
+      position: relative;
+    }
+
+    /* fade-right indicator — hints there's more to scroll */
+    .tabs-wrapper::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 48px;
+      background: linear-gradient(to right, transparent, var(--color-bg));
+      pointer-events: none;
+      z-index: 2;
+    }
+
     .tabs-list {
       overflow-x: auto;
+      scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
     }
@@ -209,14 +230,18 @@ import { projects } from '../data/projects';
     }
 
     .tab-btn {
-      /* prevent tabs from shrinking below readable size */
-      flex-shrink: 0;
-      min-width: 90px;
+      flex: 0 0 auto;
+      min-width: 140px;
       padding: 0.6rem 0.75rem;
+      scroll-snap-align: start;
     }
 
+    /* show full name — no ellipsis when the user can scroll */
     .tab-name {
       font-size: var(--text-sm);
+      overflow: visible;
+      text-overflow: unset;
+      white-space: nowrap;
     }
   }
 

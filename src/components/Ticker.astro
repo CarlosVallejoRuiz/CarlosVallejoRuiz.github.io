@@ -18,7 +18,7 @@ const segments = [
     <div class="ticker-track">
 
       {/* First copy */}
-      <span class="ticker-content">
+      <span class="ticker-content" data-ticker-part>
         {segments.map((seg, i) => (
           <Fragment>
             {i > 0 && <span class="ticker-dot"> · </span>}
@@ -29,7 +29,7 @@ const segments = [
       </span>
 
       {/* Duplicate — makes the loop seamless */}
-      <span class="ticker-content">
+      <span class="ticker-content" data-ticker-part>
         {segments.map((seg, i) => (
           <Fragment>
             {i > 0 && <span class="ticker-dot"> · </span>}
@@ -115,7 +115,7 @@ const segments = [
     padding-right: 0; /* spacing comes from the trailing dot */
   }
 
-  .ticker-dot {
+  :global(.ticker-dot) {
     color: var(--color-accent);
   }
 
