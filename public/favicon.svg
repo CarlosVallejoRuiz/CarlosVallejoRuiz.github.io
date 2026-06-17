@@ -1,15 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- accent blue background -->
-  <rect width="32" height="32" fill="#2D5A8E"/>
-  <!-- "jk" in white, serif weight to echo Playfair character -->
+  <rect width="32" height="32" fill="#E8E4DC"/>
   <text
-    x="50%" y="53%"
+    x="50%" y="54%"
     dominant-baseline="middle"
     text-anchor="middle"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="15"
-    font-weight="700"
-    fill="#FFFFFF"
+    font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+    font-size="16"
+    font-weight="900"
+    fill="#1A1A18"
     letter-spacing="0.5"
   >jk</text>
 </svg>
