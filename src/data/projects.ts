@@ -57,6 +57,7 @@ export const projects: Project[] = [
       es: "Juego multijugador de duelos de prompt injection. Cada jugador defiende una nave protegida por un system prompt personalizado que esconde una palabra secreta — los atacantes tienen 5 turnos de conversación más un intento final para descubrirla. Incluye bucle de duelo completo, tienda con power-ups, retos diarios en tres niveles vía GitHub Actions, clasificaciones y repeticiones públicas con redacción de la palabra secreta en servidor.",
     },
     stack: ["Next.js 16", "TypeScript", "Tailwind", "Supabase", "Claude Haiku 4.5", "Vercel"],
+    url: "https://ctrl-alt-destroy.vercel.app/",
     github: "https://github.com/CarlosVallejoRuiz/ctrl-alt-destroy",
     previewImage: "/images/ctrl-alt-destroy-preview.png",
     status: "live",
