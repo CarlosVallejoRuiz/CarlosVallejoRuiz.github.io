@@ -58,7 +58,6 @@ export const projects: Project[] = [
     },
     stack: ["Next.js 16", "TypeScript", "Tailwind", "Supabase", "Claude Haiku 4.5", "Vercel"],
     url: "https://ctrl-alt-destroy.vercel.app/",
-    github: "https://github.com/CarlosVallejoRuiz/ctrl-alt-destroy",
     previewImage: "/images/ctrl-alt-destroy-preview.png",
     status: "live",
   },
