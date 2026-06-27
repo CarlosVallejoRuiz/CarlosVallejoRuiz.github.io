@@ -110,6 +110,12 @@ import { projects } from '../data/projects';
      ============================================================ */
   .tabs-list {
     display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tabs-list::-webkit-scrollbar {
+    display: none;
   }
 
   .tab-btn {
@@ -123,7 +129,7 @@ import { projects } from '../data/projects';
     cursor: pointer;
     text-align: left;
     flex: 1;
-    min-width: 0;
+    min-width: 110px; /* prevent severe squish with 5+ tabs on desktop */
     transition: border-color 0.15s ease;
   }
 

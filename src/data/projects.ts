@@ -40,8 +40,30 @@ export const projects: Project[] = [
     status: "open-source",
   },
   {
-    id: "debug-duck",
+    id: "ctrl-alt-destroy",
     number: "02",
+    name: "CTRL+ALT+DESTROY",
+    context: "@personal",
+    category: {
+      en: "Multiplayer AI Security Game",
+      es: "Juego Multijugador de Seguridad IA",
+    },
+    role: {
+      en: "Solo Build · 2026",
+      es: "Desarrollo en Solitario · 2026",
+    },
+    description: {
+      en: "Multiplayer prompt-injection dueling game. Each player defends a ship protected by a custom system prompt hiding a secret word — attackers get 5 conversational turns plus one final guess to crack it. Built a full duel loop, shop with power-ups, three-tier daily challenges via GitHub Actions, leaderboards, and public replay with server-side secret redaction.",
+      es: "Juego multijugador de duelos de prompt injection. Cada jugador defiende una nave protegida por un system prompt personalizado que esconde una palabra secreta — los atacantes tienen 5 turnos de conversación más un intento final para descubrirla. Incluye bucle de duelo completo, tienda con power-ups, retos diarios en tres niveles vía GitHub Actions, clasificaciones y repeticiones públicas con redacción de la palabra secreta en servidor.",
+    },
+    stack: ["Next.js 16", "TypeScript", "Tailwind", "Supabase", "Claude Haiku 4.5", "Vercel"],
+    github: "https://github.com/CarlosVallejoRuiz/ctrl-alt-destroy",
+    previewImage: "/images/ctrl-alt-destroy-preview.png",
+    status: "live",
+  },
+  {
+    id: "debug-duck",
+    number: "03",
     name: "DebugDuck",
     context: "@open-source",
     category: {
@@ -64,7 +86,7 @@ export const projects: Project[] = [
   },
   {
     id: "prisma-stats",
-    number: "03",
+    number: "04",
     name: "PrismaStats",
     context: "@personal",
     category: {
@@ -86,7 +108,7 @@ export const projects: Project[] = [
   },
   {
     id: "arc-intelligence",
-    number: "04",
+    number: "05",
     name: "ArcIntelligence",
     context: "@personal",
     category: {
