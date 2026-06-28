@@ -124,6 +124,7 @@ export const projects: Project[] = [
       es: "App de escritorio en Python que integra RoboDK con la API de Claude para automatizar programas de soldadura robótica MIG/MAG. Reduce el tiempo de programación manual de horas a minutos.",
     },
     stack: ["Python", "RoboDK SDK", "Claude API", "Tauri"],
+    url: "https://imjuank.dev/ArcIntelligence_WEB/",
     previewImage: "/images/arc-preview.png",
     status: "wip",
   },
